@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidamedica SpA - Insumos Médicos Chile</title>
+    <style>
+        :root {
+            --primary: #00B4D8;
+            --secondary: #90E0EF;
+            --accent: #FF6B6B;
+            --success: #06D6A0;
+            --warning: #FFD166;
+            --dark: #1D3557;
+            --light: #F8F9FA;
+            --white: #FFFFFF;
+            --gray: #6C757D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Categories */
+        .categories {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-title h3 {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .section-title p {
+            color: var(--gray);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Products */
+        .products {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #CAF0F8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .product-info h4 {
+            margin: 0.5rem 0;
+            color: var(--dark);
+        }
+
+        .product-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0096B7;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #05B088;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--white);
+            padding: 4rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .info-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            color: var(--gray);
+        }
+
+        /* Payment Methods */
+        .payment-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #2B4C7E 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-icon {
+            font-size: 2rem;
+        }
+
+        /* Contact */
+        .contact {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+
+        .contact-info h4 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+            transition: right 0.3s;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-info h5 {
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .cart-total {
+            padding: 1.5rem;
+            border-top: 2px solid var(--primary);
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cart-actions {
+            padding: 1.5rem;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 1500;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Checkout Modal */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            display: none;
+            z-index: 3000;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E9ECEF;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-option {
+            border: 2px solid #E9ECEF;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover,
+        .payment-option.selected {
+            border-color: var(--primary);
+            background: #F0FBFF;
+        }
+
+        .payment-option-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 4000;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">V</div>
+                <div class="logo-text">
+                    <h1>VIDAMEDICA</h1>
+                    <span>Insumos Médicos Chile</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#categorias">Categorías</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <h2>Insumos Médicos de Calidad</h2>
+        <p>Distribuidor oficial de insumos y dispositivos médicos certificados para clínicas, hospitales y el hogar en todo Chile.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-number">+1.000</div>
+                <div class="stat-label">Productos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">+15</div>
+                <div class="stat-label">Años en el mercado</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">ISP</div>
+                <div class="stat-label">Certificados</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories" id="categorias">
+        <div class="section-title">
+            <h3>Catálogo Especializado</h3>
+            <p>Equipamiento médico certificado para profesionales y el hogar</p>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" onclick="filterProducts('heridas')">
+                <div class="category-icon">🩹</div>
+                <h4>Cuidado de Heridas</h4>
+                <p>Apósitos, alginatos, hidrocoloide</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('venosa')">
+                <div class="category-icon">💉</div>
+                <h4>Terapia Venosa</h4>
+                <p>Catéteres, jeringas, agujas IV</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('fijacion')">
+                <div class="category-icon">🩹</div>
+                <h4>Fijación Médica</h4>
+                <p>Cintas quirúrgicas, apósitos</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('diabetes')">
+                <div class="category-icon">💉</div>
+                <h4>Diabetes</h4>
+                <p>Jeringas insulina, agujas pluma</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('muestra')">
+                <div class="category-icon">🧪</div>
+                <h4>Toma de Muestra</h4>
+                <p>Tubos Vacutainer, mariposas</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('higiene')">
+                <div class="category-icon">🧴</div>
+                <h4>Higiene</h4>
+                <p>Desinfección, toallas alcohol</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('ortopedia')">
+                <div class="category-icon">🦴</div>
+                <h4>Ortopedia</h4>
+                <p>Vendajes, ortesis, soporte</p>
+            </div>
+            <div class="category-card" onclick="filterProducts('test')">
+                <div class="category-icon">🦠</div>
+                <h4>Test Antígeno</h4>
+                <p>Tests rápidos COVID, influenza</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="productos">
+        <div class="section-title">
+            <h3>Productos Destacados</h3>
+            <p>Los productos que más eligen nuestros clientes</p>
+        </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be loaded here -->
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <div class="info-container">
+            <div class="info-card">
+                <div class="info-icon">🚚</div>
+                <h4>Envíos Rápidos</h4>
+                <p>1-3 días hábiles en RM<br>3-7 días hábiles en Regiones</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">↩️</div>
+                <h4>Devoluciones</h4>
+                <p>Si tuviste algún problema con tu pedido, contáctanos</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">✓</div>
+                <h4>Productos Certificados</h4>
+                <p>Distribuidores oficiales BD, Essity, Bard, Jobst</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">📍</div>
+                <h4>Cobertura Nacional</h4>
+                <p>Santiago, Viña del Mar, Concepción, Temuco y más</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-section">
+        <h3>Métodos de Pago</h3>
+        <p>Paga de forma segura con tus métodos preferidos</p>
+        <div class="payment-methods">
+            <div class="payment-method">
+                <span class="payment-icon">💳</span>
+                <span>WebPay Plus</span>
+            </div>
+            <div class="payment-method">
+                <span class="payment-icon">🏦</span>
+                <span>Transferencia Bancaria</span>
+            </div>
+            <div class="payment-method">
+                <span class="payment-icon">📱</span>
+                <span>Mercado Pago</span>
+            </div>
+            <div class="payment-method">
+                <span class="payment-icon">🔗</span>
+                <span>Khipu</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contacto">
+        <div class="section-title">
+            <h3>Contacto</h3>
+            <p>¿Necesitas una cotización? Comunícate con nosotros</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h4>Información de Contacto</h4>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Dirección</strong><br>
+                        Av. Apoquindo 6410, Of. 1510, Las Condes, Santiago
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Teléfono</strong><br>
+                        +56 2 2929 8137<br>
+                        +56 9 9276 7181
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        contacto@vidamedica.cl
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📋</div>
+                    <div>
+                        <strong>RUT</strong><br>
+                        76.352.414-0
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <h4>Horario de Atención</h4>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <strong>Lunes a Viernes</strong><br>
+                        9:00 - 18:00 hrs
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <strong>Sábado</strong><br>
+                        9:00 - 13:00 hrs
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🚚</div>
+                    <div>
+                        <strong>Despachos</strong><br>
+                        A todas las regiones de Chile
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <div class="logo-icon">V</div>
+                <div class="logo-text">
+                    <h1 style="color: white;">VIDAMEDICA</h1>
+                    <span style="color: var(--secondary);">Insumos Médicos Chile</span>
+                </div>
+            </div>
+            <p>Schonfeldt Vidamedica SpA - RUT 76.352.414-0</p>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#categorias">Categorías</a>
+                <a href="#productos">Productos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                © 2026 Vidamedica SpA. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="modal-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: var(--gray);">Tu carrito está vacío</p>
+        </div>
+        <div class="cart-total" id="cartTotal" style="display: none;">
+            <span>Total:</span>
+            <span id="cartTotalAmount">$0</span>
+        </div>
+        <div class="cart-actions" id="cartActions" style="display: none;">
+            <button class="btn btn-success" onclick="openCheckout()">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-header">
+            <h3>Finalizar Compra</h3>
+            <button class="modal-close" onclick="closeCheckout()">✕</button>
+        </div>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label>Nombre Completo *</label>
+                <input type="text" required placeholder="Tu nombre">
+            </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" required placeholder="tu@email.com">
+            </div>
+            <div class="form-group">
+                <label>Teléfono *</label>
+                <input type="tel" required placeholder="+56 9 1234 5678">
+            </div>
+            <div class="form-group">
+                <label>Dirección de Envío *</label>
+                <input type="text" required placeholder="Calle, número, comuna">
+            </div>
+            <div class="form-group">
+                <label>Región *</label>
+                <select required>
+                    <option value="">Selecciona tu región</option>
+                    <option>Región Metropolitana</option>
+                    <option>Valparaíso</option>
+                    <option>Biobío</option>
+                    <option>Los Lagos</option>
+                    <option>La Araucanía</option>
+                    <option>Antofagasta</option>
+                    <option>Coquimbo</option>
+                    <option>Maule</option>
+                    <option>O'Higgins</option>
+                    <option>Tarapacá</option>
+                    <option>Arica y Parinacota</option>
+                    <option>Atacama</option>
+                    <option>Ñuble</option>
+                    <option>Los Ríos</option>
+                    <option>Aysén</option>
+                    <option>Magallanes</option>
+                </select>
+            </div>
+
+            <h4 style="margin: 1.5rem 0 1rem;">Método de Pago</h4>
+            <div class="payment-options">
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <div class="payment-option-icon">💳</div>
+                    <div>WebPay</div>
+                    <small>Tarjetas Crédito/Débito</small>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <div class="payment-option-icon">🏦</div>
+                    <div>Transferencia</div>
+                    <small>Transferencia bancaria</small>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <div class="payment-option-icon">📱</div>
+                    <div>Mercado Pago</div>
+                    <small>Todas las tarjetas</small>
+                </div>
+                <div class="payment-option" onclick="selectPayment(this)">
+                    <div class="payment-option-icon">🔗</div>
+                    <div>Khipu</div>
+                    <small>Pago desde tu banco</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+                Confirmar Pedido
+            </button>
+        </form>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Product data
+        const products = [
+            { id: 1, name: "Apósito Hidrocoloide 10x10cm", category: "heridas", price: 8500, icon: "🩹", desc: "Apósito estéril para heridas" },
+            { id: 2, name: "Alginato de Calcio 5x5cm", category: "heridas", price: 6200, icon: "🩹", desc: "Apósito de fibras naturales" },
+            { id: 3, name: "Catéter IV 20G x 1 1/4"", category: "venosa", price: 3200, icon: "💉", desc: "Catéter periférico BD" },
+            { id: 4, name: "Jeringa 5ml Luer Lock", category: "venosa", price: 890, icon: "💉", desc: "Caja 100 unidades" },
+            { id: 5, name: "Aguja Hipodérmica 23G", category: "venosa", price: 5900, icon: "💉", desc: "Caja 100 unidades BD" },
+            { id: 6, name: "Cinta Quirúrgica 2.5cm x 10m", category: "fijacion", price: 2400, icon: "🩹", desc: "Micropore hipoalergénico" },
+            { id: 7, name: "Apósito Transparente 6x7cm", category: "fijacion", price: 1800, icon: "🩹", desc: "Film impermeable estéril" },
+            { id: 8, name: "Jeringa Insulina 1ml 29G", category: "diabetes", price: 4500, icon: "💉", desc: "Caja 100 unidades" },
+            { id: 9, name: "Agujas para Pluma 4mm", category: "diabetes", price: 8900, icon: "💉", desc: "Caja 100 unidades" },
+            { id: 10, name: "Tubo Vacutainer EDTA", category: "muestra", price: 3200, icon: "🧪", desc: "Caja 100 unidades" },
+            { id: 11, name: "Scalp Vein 21G", category: "muestra", price: 2800, icon: "🧪", desc: "Mariposa para extracción" },
+            { id: 12, name: "Toalla Alcohol 70%", category: "higiene", price: 1900, icon: "🧴", desc: "Envase 100 unidades" },
+            { id: 13, name: "Alcohol Gel 500ml", category: "higiene", price: 3500, icon: "🧴", desc: "Antiséptico de manos" },
+            { id: 14, name: "Venda Elástica 10cm x 4m", category: "ortopedia", price: 4200, icon: "🦴", desc: "Compresión media" },
+            { id: 15, name: "Test Antígeno COVID-19", category: "test", price: 6500, icon: "🦠", desc: "Test rápido casero" },
+            { id: 16, name: "Test Influenza A/B", category: "test", price: 9800, icon: "🦠", desc: "Test rápido combinado" }
+        ];
+
+        let cart = [];
+        let currentFilter = null;
+
+        // Format price
+        function formatPrice(price) {
+            return '$' + price.toLocaleString('es-CL');
+        }
+
+        // Render products
+        function renderProducts(filter = null) {
+            const grid = document.getElementById('productsGrid');
+            const filtered = filter ? products.filter(p => p.category === filter) : products;
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card">
+                    <div class="product-image">${p.icon}</div>
+                    <div class="product-info">
+                        <span class="product-category">${getCategoryName(p.category)}</span>
+                        <h4>${p.name}</h4>
+                        <p>${p.desc}</p>
+                        <div class="product-price">${formatPrice(p.price)}</div>
+                        <button class="btn btn-primary" onclick="addToCart(${p.id})">
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryName(cat) {
+            const names = {
+                heridas: 'Cuidado de Heridas',
+                venosa: 'Terapia Venosa',
+                fijacion: 'Fijación Médica',
+                diabetes: 'Diabetes',
+                muestra: 'Toma de Muestra',
+                higiene: 'Higiene',
+                ortopedia: 'Ortopedia',
+                test: 'Test Antígeno'
+            };
+            return names[cat] || cat;
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            currentFilter = category;
+            renderProducts(category);
+            document.getElementById('productos').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Cart functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+            showToast(`${product.name} agregado al carrito`);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartActions = document.getElementById('cartActions');
+            const cartCount = document.getElementById('cartCount');
+
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: var(--gray);">Tu carrito está vacío</p>';
+                cartTotal.style.display = 'none';
+                cartActions.style.display = 'none';
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h5>${item.name}</h5>
+                        <small>Cantidad: ${item.quantity}</small>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="cart-item-price">${formatPrice(item.price * item.quantity)}</div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cartTotalAmount').textContent = formatPrice(total);
+            cartTotal.style.display = 'flex';
+            cartActions.style.display = 'block';
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+
+        // Checkout
+        function openCheckout() {
+            document.getElementById('checkoutModal').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function selectPayment(element) {
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        // Toast
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // Form submit
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedPayment = document.querySelector('.payment-option.selected');
+
+            if (!selectedPayment) {
+                showToast('Por favor selecciona un método de pago');
+                return;
+            }
+
+            showToast('¡Pedido confirmado! Te contactaremos para coordinar el pago.');
+            cart = [];
+            updateCart();
+            closeCheckout();
+            this.reset();
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+        });
+
+        // Initialize
+        renderProducts();
+    </script>
+</body>
+</html>
